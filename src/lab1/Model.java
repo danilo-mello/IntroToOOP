@@ -232,7 +232,7 @@ public class Model {
      */
     public int calculatePayDollarsPerHour() {
         int hourlyRate = BASE_RATE_DOLLARS_PER_HOUR;
-        if (getHeight() >= TALL_INCHES && getWeight() <= THIN_POUNDS) {
+        if (getHeight() >= TALL_INCHES && getWeight() < THIN_POUNDS) {
             hourlyRate += TALL_THIN_BONUS_DOLLARS_PER_HOUR;
         }
         if (isCanTravel()) {
