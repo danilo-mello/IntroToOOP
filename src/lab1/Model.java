@@ -191,7 +191,7 @@ public class Model {
      * Receives the weight in kilograms, checks if the value is accepted and stores it in pounds.
      * @param kilograms long with the weight in kilograms.
      */
-    public void setWeightKilograms(long kilograms) {
+    public void setWeight(long kilograms) {
         checkWeight(kilograms * POUNDS_PER_KG);
         this.weight = POUNDS_PER_KG * kilograms;
     }

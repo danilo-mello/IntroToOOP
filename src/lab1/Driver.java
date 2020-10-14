@@ -10,7 +10,7 @@ public class Driver {
             m1.setFirstName("Diane");
             m1.setLastName("Kruger");
             m1.setHeight(5, 7);
-            m1.setWeightKilograms(57);
+            m1.setWeight(57L);
 
             m1.printDetails();
             m2.displayModelDetails();
@@ -22,8 +22,8 @@ public class Driver {
             // m2.setHeight(23);
             // m2.setHeight(8, 8);
             // m2.setHeight(1, 2);
-            // m2.setWeightKilograms(200);
-            // m2.setWeightKilograms(20);
+            // m2.setWeight(200);
+            // m2.setWeight(20);
             // m2.setFirstName("ab");
             // m2.setFirstName("abcdefghijklmnopqrstuvwxyz");
             // m2.setLastName("ab");
