@@ -10,7 +10,8 @@ public class Driver {
             m1.setFirstName("Diane");
             m1.setLastName("Kruger");
             m1.setHeight(5, 7);
-            m1.setWeight(57L);
+            m1.setHeight(70);
+            m1.setWeight(80);
 
             m1.printDetails();
             m2.displayModelDetails();
