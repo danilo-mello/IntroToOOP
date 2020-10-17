@@ -12,6 +12,9 @@ public class MiniProject {
     private final String city;
     private final StringBuilder wordSoFar;
 
+    /**
+     * Constructor method
+     */
     MiniProject(){
         String[] cities = readFile();
         city = pickCity(cities);
@@ -26,6 +29,10 @@ public class MiniProject {
         return wordSoFar;
     }
 
+    /**
+     * Reads the designated file and returns an Array of Strings.
+     * @return Returns a Array of Strings with all the cities in the file.
+     */
     private String[] readFile() {
         File file = new File("cities.txt");
         try {
@@ -43,12 +50,23 @@ public class MiniProject {
         }
     }
 
+    /**
+     * Receives an array of Strings and randomly selects one of the strings
+     * @param cities an array of Strings with city names.
+     * @return A ramdomly city from the given array.
+     */
     private String pickCity(String[] cities) {
         Random random = new Random();
         int n = random.nextInt(cities.length);
         return cities[n];
     }
 
+    /**
+     * Builds a StringBuilder hiding the String received as a parameter
+     * e.g. "Rio de Janeiro" -> "___ __ _______".
+     * @param chosenCity String with a city name
+     * @return A StringBuilder with the letters swapped by underscores.
+     */
     private StringBuilder wordSoFar(String chosenCity) {
         String hiddenWord = "";
         for (int i = 0; i < chosenCity.length(); i++) {
@@ -61,6 +79,11 @@ public class MiniProject {
         return new StringBuilder(hiddenWord);
     }
 
+    /**
+     * Method to check if the game was won.
+     * @param counterToWin int with the number of correct guessed letters.
+     * @return true if game was won, false if not.
+     */
     private boolean CheckWin(int counterToWin) {
         if (counterToWin == getCity().length()) {
             System.out.println("You win!");
@@ -69,6 +92,10 @@ public class MiniProject {
         } else return false;
     }
 
+    /**
+     * Gives a message if the game was lost.
+     * @param counterToLose int with the number of wrong guessed letters
+     */
     private void CheckLose(int counterToLose) {
         if (counterToLose == 10) {
             System.out.println("You lose!");
@@ -76,10 +103,17 @@ public class MiniProject {
         }
     }
 
+    /**
+     * Method to initialize and start the game.
+     */
     public void StartGame(){
         Question(getCity(), getWordSoFar());
     }
 
+    /**
+     * Method to receive a guess and validate it.
+     * @return String with the letter.
+     */
     private String Guess() {
         Scanner in = new Scanner(System.in);
         String letter;
@@ -94,6 +128,13 @@ public class MiniProject {
         return letter;
     }
 
+    /**
+     * This method calls the Guess method, verifies if the letter was already guessed and
+     * if the city contains the guessed letter, updating the hidden word with if true
+     * and showing the previous wrong guesses.
+     * @param chosenCity String with the selected city.
+     * @param wordSoFar String with the hidden selected city.
+     */
     private void Question(String chosenCity, StringBuilder wordSoFar) {
 
         String usedLetters = "";
