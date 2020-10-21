@@ -1,12 +1,12 @@
 package oop.inheritance;
 
-import java.util.Objects;
 
 public class BankAccount {
     private int bankCode;
     private String accountNumber;
-    private double balance;
+    protected double balance;
 
+    // method overloading
     public BankAccount(int bankCode, String accountNumber, double balance) {
         this.bankCode = bankCode;
         this.accountNumber = accountNumber;
@@ -36,34 +36,31 @@ public class BankAccount {
     }
 
     public void setAccountNumber(String accountNumber) {
-        accountNumber = accountNumber;
+        this.accountNumber = accountNumber;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    @Override
+    // from Object class
+    // toString() : returns the string representation of BankAccount
+    @Override  // annotation
     public String toString() {
-        return "BankAccount{" +
-                "bankCode=" + bankCode +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", balance=" + balance +
-                '}';
+        return "BankAccount{accountNumber=" + accountNumber +
+            ", bankCode=" + bankCode + ", balance=" + balance + "}";
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         BankAccount that = (BankAccount) o;
-        return bankCode == that.bankCode &&
-                Double.compare(that.balance, balance) == 0 &&
-                Objects.equals(accountNumber, that.accountNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(bankCode, accountNumber, balance);
+        return accountNumber.equals(that.accountNumber)
+            && bankCode == that.bankCode;
     }
 }
