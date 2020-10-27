@@ -35,7 +35,11 @@ public class Pawn extends Piece {
 
   @Override
   void move() {
-    System.out.println("Forward 1");
+    if (isPromoted()) {
+      newPiece.move();
+    } else {
+      System.out.println("Forward 1");
+    }
   }
 
   @Override
