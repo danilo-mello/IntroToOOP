@@ -1,7 +1,6 @@
 package lab3;
 
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Pawn extends Piece {
 
@@ -37,10 +36,6 @@ public class Pawn extends Piece {
   @Override
   void move() {
     System.out.println("Forward 1");
-//    if (isWhite()) {
-//      this.position++;
-//    }
-//    this.position--;
   }
 
   @Override

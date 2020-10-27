@@ -13,32 +13,32 @@ public class InputCollector {
   protected static String[] getInformation() {
 
     String name = InputCollector.getUserInput("Enter Name:");
-    while (mandatory(name) || isString(name) || validName(name)) {
+    while (isMandatory(name) || !isString(name) || isValidName(name)) {
       name = InputCollector.getUserInput("Enter Name:");
     }
-    String mobile = InputCollector.getUserInput("Enter Mobile:");
-    while (mandatory(mobile) || isPhoneNumber(mobile) || validMobile(mobile)) {
-      mobile = InputCollector.getUserInput("Enter Mobile:");
+    String mobile = InputCollector.getUserInput("Enter Mobile (only digits):");
+    while (isMandatory(mobile) || !isPhoneNumber(mobile) || isValidMobile(mobile)) {
+      mobile = InputCollector.getUserInput("Enter Mobile (only digits):");
     }
-    String work = InputCollector.getUserInput("Enter work:");
-    while (isPhoneNumber(work)) {
-      work = InputCollector.getUserInput("Enter work:");
+    String work = InputCollector.getUserInput("Enter work (only digits):");
+    while (!isPhoneNumber(work)) {
+      work = InputCollector.getUserInput("Enter work (only digits):");
     }
-    String home = InputCollector.getUserInput("Enter home:");
-    while (isPhoneNumber(home)) {
-      home = InputCollector.getUserInput("Enter home:");
+    String home = InputCollector.getUserInput("Enter home (only digits):");
+    while (!isPhoneNumber(home)) {
+      home = InputCollector.getUserInput("Enter home (only digits):");
     }
     String city = InputCollector.getUserInput("Enter city:");
-    while (isString(city)) {
+    while (!isString(city)) {
       city = InputCollector.getUserInput("Enter city:");
     }
 
     return new String[]{name, mobile, work, home, city};
   }
 
-  private static boolean mandatory(String field) {
+  private static boolean isMandatory(String field) {
     if (field.length() < 1) {
-      System.out.println("You must enter this field.");
+      System.out.println("You must enter this field.\n");
       return true;
     }
     return false;
@@ -47,45 +47,59 @@ public class InputCollector {
   private static boolean isString(String string) {
     int len = string.length();
     if (len == 0) {
-      return false;
+      return true;
     }
-    for (int i = 0; i < len; i++) {
-      if ((Character.isLetter(string.charAt(i)))) {
+    for (char ch : string.toCharArray()) {
+      if (!Character.isLetter(ch) && !(ch == ' ')) {
+        System.out.println("Invalid input\n");
         return false;
       }
     }
-    System.out.println("Invalid input");
+    if (string.length() < 3) {
+      System.out.println("Input is too short. Try again. (>3)\n");
+      return false;
+    } else if (string.length() > 30) {
+      System.out.println("Input is too long. Try again. (<30)\n");
+      return false;
+    }
     return true;
   }
 
   private static boolean isPhoneNumber(String string) {
     int len = string.length();
     if (len == 0) {
-      return false;
+      return true;
     }
-    for (int i = 0; i < len; i++) {
-      if ((!Character.isLetter(string.charAt(i)))) {
+    for (char ch : string.toCharArray()) {
+      if (!Character.isDigit(ch)) {
+        System.out.println("Invalid input\n");
         return false;
       }
     }
-    System.out.println("Invalid input");
+    if (string.length() < 8) {
+      System.out.println("Input is too short. Try again. (>8)\n");
+      return false;
+    } else if (string.length() > 15) {
+      System.out.println("Input is too long. Try again. (<15)\n");
+      return false;
+    }
     return true;
   }
 
-  private static boolean validName(String name) {
+  private static boolean isValidName(String name) {
     for (Contact contact : ContactList.contactArrayList) {
       if (name.equals(contact.getName())) {
-        System.out.println("This name already exists. Try again.");
+        System.out.println("This name already exists. Try again.\n");
         return true;
       }
     }
     return false;
   }
 
-  private static boolean validMobile(String mobile) {
+  private static boolean isValidMobile(String mobile) {
     for (Contact contact : ContactList.contactArrayList) {
       if (mobile.equals(contact.getMobile())) {
-        System.out.println("This mobile already exists. Try again.");
+        System.out.println("This mobile already exists. Try again.\n");
         return true;
       }
     }
@@ -95,8 +109,8 @@ public class InputCollector {
   protected static boolean isValidIndex(int index) {
 
     if (!ContactList.activeIndexes.contains(index)) {
-      System.out.print("This index doesn't exists. ");
-      System.out.println("Please choose between: " + ContactList.activeIndexes.toString());
+      System.out.println("Invalid Input. Please choose between: " +
+          ContactList.activeIndexes.toString() + "\n");
       return true;
     }
     return false;

@@ -15,7 +15,7 @@ public class Driver {
   public static void main(String[] args) {
 
     int intIndex;
-
+    
     while (true) {
       printMenu();
       String userOptionInput = InputCollector.getUserInput("Enter your option:");
@@ -29,32 +29,36 @@ public class Driver {
         case ("2"):
 
           ContactList.addContact();
-          Contact.counter++;
-          System.out.println("Successfully added a new contact!");
           break;
 
         case ("3"):
 
           ContactList.listAllContacts();
+          if (ContactList.contactArrayList.size() < 1) {
+            break;
+          }
 
           intIndex = InputCollector.getIndex(true);
           while (InputCollector.isValidIndex(intIndex)) {
             intIndex = InputCollector.getIndex(true);
           }
 
-          System.out.println("Successfully removed " + ContactList.removeContact(intIndex));
+          System.out.println("Successfully removed " + ContactList.removeContact(intIndex) + "\n");
           break;
 
         case ("4"):
 
           ContactList.listAllContacts();
+          if (ContactList.contactArrayList.size() < 1) {
+            break;
+          }
 
           intIndex = InputCollector.getIndex(false);
           while (InputCollector.isValidIndex(intIndex)) {
             intIndex = InputCollector.getIndex(false);
           }
 
-          System.out.println(ContactList.updateContact(intIndex));
+          System.out.println(ContactList.updateContact(intIndex) + "\n");
           break;
 
         case ("5"):
@@ -64,7 +68,7 @@ public class Driver {
 
         default:
 
-          System.out.println("\nInvalid input!\n");
+          System.out.println("\nInvalid input.\n");
           break;
 
       }

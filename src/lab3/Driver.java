@@ -9,6 +9,7 @@ public class Driver {
 
     ArrayList<Piece> pieces = new ArrayList<>();
 
+
     Pawn p1 = new Pawn(1, true, true, new Queen(9, true));
     Piece p2 = new Pawn(1, true, false, null);
     Piece p3 = new Pawn(1, false, false, null);
