@@ -1,5 +1,5 @@
 
-package oop.interfaces;
+package oop.interfaces.caravan;
 
 public class House implements Habitable {
   private int numOfBedrooms;
